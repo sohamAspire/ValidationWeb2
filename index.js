@@ -15,7 +15,7 @@ function openmodal() {
         document.getElementsByTagName("input")[index].removeAttribute("style");
     }
     myForm.reset();
-    // console.log(DOB.value);
+
 }
 // Onload 
 function showData() {
