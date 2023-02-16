@@ -5,18 +5,20 @@ const Name = document.getElementById('inputName4');
 const Mobile = document.getElementById('inputMobile4');
 const DOB = document.getElementById('inputDob4');
 const Gender = document.getElementById('inputGroupSelect01');
-document.getElementById("success").style.display = "none";
-document.getElementById("failure").style.display = "none";
+
 
 function openmodal() {
     document.getElementById("updating").style.display = "none";
     document.getElementById("adding").style.display = "block";
+    var len = document.getElementsByTagName("input").length
+    for (let index = 0; index < len; index++) {
+        document.getElementsByTagName("input")[index].removeAttribute("style");
+    }
     myForm.reset();
     // console.log(DOB.value);
 }
 // Onload 
 function showData() {
-
     data1 = JSON.parse(localStorage.getItem('items'));
     console.log(data1);
     data1.forEach((i, index) => {
@@ -82,6 +84,7 @@ function deleteAl(e, ind) {
     data.splice(ind, 1)
     localStorage.setItem('items', JSON.stringify(data))
     e.parentElement.parentElement.remove();
+    alert();
 }
 // Delete Data 
 
@@ -91,6 +94,10 @@ function openMod(e, id) {
     document.getElementById("adding").style.display = "none";
     Email.value = e.parentElement.parentElement.cells[0].innerHTML;
     Password.value = e.parentElement.parentElement.cells[1].innerHTML;
+    Name.value = e.parentElement.parentElement.cells[2].innerHTML;
+    Mobile.value = e.parentElement.parentElement.cells[3].innerHTML;
+    DOB.value = e.parentElement.parentElement.cells[4].innerHTML;
+    Gender.value = e.parentElement.parentElement.cells[5].innerHTML;
     btn = document.getElementById("updating");
     data = JSON.parse(localStorage.getItem('items'));
     btn.addEventListener("click", function () {
