@@ -18,7 +18,7 @@
         <button type="button" class="close" data-dismiss="alert">x</button>
         Your Data has been Submitted
     </div>
-    <div class="container alert alert-danger" role="alert" id="failure">
+    <div class="container alert alert-danger mt-2" role="alert" id="failure">
         <button type="button" class="close" data-dismiss="alert">x</button>
         Error ! Please Check the fields
     </div>
@@ -45,31 +45,31 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" >
+                  <input type="email" class="form-control" id="inputEmail4" onblur="ValidateEmail()">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Password</label>
-                  <input type="text" class="form-control" id="inputPassword4" >
+                  <input type="text" class="form-control" id="inputPassword4" onblur="ValidatePassword()">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputName4">Name</label>
-                  <input type="text" class="form-control" id="inputName4" >
+                  <input type="text" class="form-control" id="inputName4" onblur="ValidateName()">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputMobile4">Mobile</label>
-                  <input type="text" class="form-control" id="inputMobile4" >
+                  <input type="text" class="form-control" id="inputMobile4" placeholder="Please start With +91-" onblur="ValidateMobile()">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputDob4">Date : </label>
-                  <input type="date" class="form-control" id="inputDob4" >
+                  <input type="date" class="form-control" id="inputDob4" onblur="ValidateDate()">
                 </div>
                 <div class="form-group col-md-6">
                     <label  for="inputGroupSelect01">Gender</label>
-                    <select class="custom-select" id="inputGroupSelect01"> 
+                    <select class="custom-select" id="inputGroupSelect01" onblur="ValidateGender()"> 
                       <option value="">Choose...</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
