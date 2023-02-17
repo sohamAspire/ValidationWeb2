@@ -36,10 +36,10 @@
     Error ! Please Check the fields
   </div>
 
-  <div class="container mt-5">
-    <button type="button" class="btn btn-outline-dark w-100" data-toggle="modal" onclick="openmodal()"
+  <div class="container mt-5 d-flex justify-content-end">
+    <button type="button" class="btn btn-outline-primary w-25 " data-toggle="modal" onclick="openmodal()"
       data-target="#exampleModalCenter">
-      Add Data
+      Add User
     </button>
   </div>
   <!-- Modal  -->
@@ -116,13 +116,13 @@
     <table class="table table-hover table-dark text-center table-responsive-lg">
       <thead>
         <tr scope="row">
+          <th>Name</th>
           <th>Email</th>
           <th>Password</th>
-          <th>Name</th>
           <th>Mobile</th>
           <th>DOB</th>
           <th>Gender</th>
-          <th>Options</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody id="data">

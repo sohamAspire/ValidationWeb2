@@ -23,13 +23,13 @@ function showData() {
     console.log(data1);
     data1.forEach((i, index) => {
         document.getElementById("data").innerHTML += `<tr>
+        <td>${i.Name}</td>
             <td>${i.Email}</td>
             <td>${i.Password}</td>
-            <td>${i.Name}</td>
             <td>${i.Mobile}</td>
             <td>${i.Date}</td>
             <td>${i.Gender}</td>
-            <td><button class='btn btn-outline-secondary' data-toggle='modal' onclick='openMod(this,${index})' data-target='#exampleModalCenter'>Edit</button>
+            <td><button class='btn btn-outline-primary' data-toggle='modal' onclick='openMod(this,${index})' data-target='#exampleModalCenter'>Edit</button>
             <button class='btn btn-outline-danger' onclick='deleteAl(this,${index})'>Delete</button></td>
             </tr> `
     })
@@ -42,6 +42,7 @@ function alert() {
 function addData() {
 
     if (ValidateName() == true && ValidatePassword() == true && ValidateName() == true && ValidateMobile() == true && ValidateDOB() == true) {
+
         if (localStorage.getItem("items") == null) {
             var itemsArray = [];
         }
@@ -62,7 +63,7 @@ function addData() {
 
         document.getElementById("success").style.display = "block";
         document.getElementById("failure").style.display = "none";
-        // setTimeout(alert, 500);
+        setTimeout(alert, 500);
 
     }
     else {
@@ -74,8 +75,8 @@ function addData() {
         spans.forEach((elem) => {
             elem.style.display = "none"
         })
-        // document.getElementById("failure").style.display = "block";
-        // setTimeout(alert, 500);
+        document.getElementById("failure").style.display = "block";
+        setTimeout(alert, 1000);
     }
 
 }
