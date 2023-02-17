@@ -41,7 +41,7 @@ function alert() {
 // Add Data 
 function addData() {
 
-    if (ValidateName()==true && ValidatePassword()==true && ValidateName() == true && ValidateMobile()==true && ValidateDOB()==true) {
+    if (ValidateName() == true && ValidatePassword() == true && ValidateName() == true && ValidateMobile() == true && ValidateDOB() == true) {
         if (localStorage.getItem("items") == null) {
             var itemsArray = [];
         }
@@ -71,7 +71,7 @@ function addData() {
         document.getElementById("success").style.display = "none";
         var spans = document.getElementsByTagName("span");
         // console.log(spans);
-        spans.forEach((elem)=>{
+        spans.forEach((elem) => {
             elem.style.display = "none"
         })
         // document.getElementById("failure").style.display = "block";
@@ -180,7 +180,13 @@ function ValidateMobile() {
     }
 }
 function ValidateDOB() {
-    document.getElementById("inputDob4").max = "2023-02-17";
+    // var date = new Date();
+    // var currentMonth = date.getMonth();
+    // var currentDate = date.getDate();
+    // var currentYear = date.getFullYear();
+    // $('#inputDob4').datepicker({
+    //     maxDate: new Date(currentYear, currentMonth, currentDate)
+    // });
     if(DOB.value == null){
         DOB.style.border = "1px solid red"
         document.getElementById("ForDate").style.display = "block";
