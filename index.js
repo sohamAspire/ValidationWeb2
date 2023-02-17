@@ -41,7 +41,7 @@ function alert() {
 // Add Data 
 function addData() {
 
-    if (ValidateName() == true && ValidateEmail() == true && ValidateMobile() == true && ValidateDate() == true && ValidateEmail() == true && ValidatePassword() == true) {
+    if (ValidateName()==true && ValidatePassword()==true && ValidateName() == true && ValidateMobile()==true && ValidateDOB()==true) {
         if (localStorage.getItem("items") == null) {
             var itemsArray = [];
         }
@@ -62,15 +62,20 @@ function addData() {
 
         document.getElementById("success").style.display = "block";
         document.getElementById("failure").style.display = "none";
-        setTimeout(alert, 1000);
+        // setTimeout(alert, 500);
 
     }
     else {
         console.log("False");
         document.getElementById("adding").removeAttribute("data-dismiss")
         document.getElementById("success").style.display = "none";
-        document.getElementById("failure").style.display = "block";
-        // setTimeout(alert, 1000);
+        var spans = document.getElementsByTagName("span");
+        // console.log(spans);
+        spans.forEach((elem)=>{
+            elem.style.display = "none"
+        })
+        // document.getElementById("failure").style.display = "block";
+        // setTimeout(alert, 500);
     }
 
 }
@@ -85,7 +90,7 @@ function deleteAl(e, ind) {
     data.splice(ind, 1)
     localStorage.setItem('items', JSON.stringify(data))
     e.parentElement.parentElement.remove();
-    alert();
+    // alert();
 }
 // Delete Data 
 
@@ -121,7 +126,7 @@ function openMod(e, id) {
 
 // Validation 
 function ValidateName() {
-    var check = /^[a-zA-Z\ ]{3,20}$/;
+    var check = /^[a-zA-Z]{3,20}$/;
     if (Name.value == '' || check.test(Name.value) == false) {
         Name.style.border = "1px solid red";
         document.getElementById("ForName").style.display = "block";
@@ -174,26 +179,20 @@ function ValidateMobile() {
         return true;
     }
 }
-function ValidateDate() {
-    var ara1 = DOB.value.split('-')
-    // console.log(ara1);
-    var datetoday = new Date();
-    var value = `${datetoday.getFullYear()}-${datetoday.getMonth() + 1}-${datetoday.getDate()}`
-    var ara2 = value.split('-')
-
-    for (let index = 0; index < ara1.length; index++) {
-        if (ara1[index] <= ara2[index]) {
-            DOB.style.border = "1px solid green";
-            document.getElementById("ForDate").style.display = "none";
-        }
-        else {
-            DOB.style.border = "1px solid red";
-            document.getElementById("ForDate").style.display = "block";
-            return false;
-        }
+function ValidateDOB() {
+    document.getElementById("inputDob4").max = "2023-02-17";
+    if(DOB.value == null){
+        DOB.style.border = "1px solid red"
+        document.getElementById("ForDate").style.display = "block";
+        return false;
     }
-
+    else{
+        DOB.style.border = "1px solid green";
+        document.getElementById("ForDate").style.display = "none";
+        return true;
+    }
 }
+
 function ValidateGender() {
     if (Gender.value == '') {
         Gender.style.border = "1px solid red"
