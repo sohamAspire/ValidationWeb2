@@ -41,7 +41,7 @@ function alert() {
 // Add Data 
 function addData() {
 
-    if (ValidateName() == true && ValidateEmail() == true && ValidateMobile() == true && ValidateDate() == true && ValidateGender() == true && ValidatePassword() == true) {
+    if (ValidateName() == true && ValidateEmail() == true && ValidateMobile() == true && ValidateDate() == true && ValidateEmail() == true && ValidatePassword() == true) {
         if (localStorage.getItem("items") == null) {
             var itemsArray = [];
         }
@@ -67,9 +67,10 @@ function addData() {
     }
     else {
         console.log("False");
+        document.getElementById("adding").removeAttribute("data-dismiss")
         document.getElementById("success").style.display = "none";
         document.getElementById("failure").style.display = "block";
-        setTimeout(alert, 1000);
+        // setTimeout(alert, 1000);
     }
 
 }
@@ -120,13 +121,15 @@ function openMod(e, id) {
 
 // Validation 
 function ValidateName() {
-    var check = /^[a-zA-Z]{3,10}$/;
+    var check = /^[a-zA-Z\ ]{3,20}$/;
     if (Name.value == '' || check.test(Name.value) == false) {
-        Name.style.border = "1px solid red"
+        Name.style.border = "1px solid red";
+        document.getElementById("ForName").style.display = "block";
         return false;
     }
     else {
         Name.style.border = "1px solid green"
+        document.getElementById("ForName").style.display = "none";
         return true;
     }
 }
@@ -136,53 +139,70 @@ function ValidateEmail() {
     var email = /\S+@\S+\.\S+/;
     if (Email.value == '' || email.test(Email.value) == false) {
         Email.style.border = "1px solid red";
+        document.getElementById("ForEmail").style.display = "block";
         return false;
     }
     else {
         Email.style.border = "1px solid green";
+        document.getElementById("ForEmail").style.display = "none";
         return true;
     }
 }
 function ValidatePassword() {
     if (Password.value == '') {
         Password.style.border = "1px solid red"
+        document.getElementById("ForPassword").style.display = "block";
         return false;
     }
     else {
         Password.style.border = "1px solid green"
+        document.getElementById("ForPassword").style.display = "none";
         return true;
     }
 }
 
 function ValidateMobile() {
-    var mobile = /^[0-9]{10}$/
-    if (Mobile.value == '' || mobile.test(Mobile.value) == false) {
+    // var mobile = /^[0-9+]{10-15}$/
+    if (Mobile.value == '') {
         Mobile.style.border = "1px solid red"
+        document.getElementById("ForMobile").style.display = "block";
         return false;
     }
     else {
         Mobile.style.border = "1px solid green";
+        document.getElementById("ForMobile").style.display = "none";
         return true;
     }
 }
 function ValidateDate() {
-    var date = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
-    if (DOB.value == '' || date.test(DOB.value) == false) {
-        DOB.style.border = "1px solid red";
-        return false;
+    var ara1 = DOB.value.split('-')
+    // console.log(ara1);
+    var datetoday = new Date();
+    var value = `${datetoday.getFullYear()}-${datetoday.getMonth() + 1}-${datetoday.getDate()}`
+    var ara2 = value.split('-')
+
+    for (let index = 0; index < ara1.length; index++) {
+        if (ara1[index] <= ara2[index]) {
+            DOB.style.border = "1px solid green";
+            document.getElementById("ForDate").style.display = "none";
+        }
+        else {
+            DOB.style.border = "1px solid red";
+            document.getElementById("ForDate").style.display = "block";
+            return false;
+        }
     }
-    else {
-        DOB.style.border = "1px solid green";
-        return true;
-    }
+
 }
 function ValidateGender() {
     if (Gender.value == '') {
         Gender.style.border = "1px solid red"
+        document.getElementById("ForGender").style.display = "block";
         return false;
     }
     else {
         Gender.style.border = "1px solid green";
+        document.getElementById("ForGender").style.display = "none";
         return true;
     }
 }
