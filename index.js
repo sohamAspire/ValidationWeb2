@@ -41,7 +41,7 @@ function alert() {
 // Add Data 
 function addData() {
 
-    if (ValidateName() == true && ValidatePassword() == true && ValidateName() == true && ValidateMobile() == true && ValidateDOB() == true) {
+    if (ValidateEmail() == true && ValidatePassword() == true && ValidateName() == true && ValidateMobile() == true && ValidateDOB() == true) {
 
         if (localStorage.getItem("items") == null) {
             var itemsArray = [];
@@ -63,18 +63,18 @@ function addData() {
 
         document.getElementById("success").style.display = "block";
         document.getElementById("failure").style.display = "none";
-        setTimeout(alert, 500);
+        setTimeout(alert, 1000);
 
     }
     else {
         console.log("False");
-        document.getElementById("adding").removeAttribute("data-dismiss")
+        document.getElementById("adding").removeAttribute("data-dismiss");
         document.getElementById("success").style.display = "none";
-        var spans = document.getElementsByTagName("span");
+        // var spans = document.getElementsByTagName("span");
         // console.log(spans);
-        spans.forEach((elem) => {
-            elem.style.display = "none"
-        })
+        // spans.forEach((elem) => {
+        //     elem.style.display = "none"
+        // })
         document.getElementById("failure").style.display = "block";
         setTimeout(alert, 1000);
     }
@@ -99,9 +99,9 @@ function deleteAl(e, ind) {
 function openMod(e, id) {
     document.getElementById("updating").style.display = "block";
     document.getElementById("adding").style.display = "none";
-    Email.value = e.parentElement.parentElement.cells[0].innerHTML;
-    Password.value = e.parentElement.parentElement.cells[1].innerHTML;
-    Name.value = e.parentElement.parentElement.cells[2].innerHTML;
+    Email.value = e.parentElement.parentElement.cells[1].innerHTML;
+    Password.value = e.parentElement.parentElement.cells[2].innerHTML;
+    Name.value = e.parentElement.parentElement.cells[0].innerHTML;
     Mobile.value = e.parentElement.parentElement.cells[3].innerHTML;
     DOB.value = e.parentElement.parentElement.cells[4].innerHTML;
     Gender.value = e.parentElement.parentElement.cells[5].innerHTML;
@@ -117,8 +117,18 @@ function openMod(e, id) {
             Gender: Gender.value
         }
         console.log(data);
-        localStorage.setItem('items', JSON.stringify(data))
-        location.reload();
+        if(ValidateEmail() == true && ValidatePassword() == true && ValidateName() == true && ValidateMobile() == true && ValidateDOB() == true){
+            localStorage.setItem('items', JSON.stringify(data))
+            document.getElementById("adding").removeAttribute("data-dismiss")
+            document.getElementById("success").style.display = "block";
+            document.getElementById("failure").style.display = "none";
+            location.reload();
+        }
+        else{
+            document.getElementById("adding").setAttribute("data-dismiss","modal")
+            document.getElementById("success").style.display = "none";
+            document.getElementById("failure").style.display = "block";
+        }
     })
 }
 
